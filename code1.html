@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ride UI</title>
+
+<style>
+body { margin: 0; font-family: Arial; background:#f5f5f5; }
+
+.navbar {
+    background:black;color:white;display:flex;
+    justify-content:space-between;padding:15px 50px;
+}
+.nav-left span,.nav-right span {margin:0 15px;cursor:pointer;}
+.signup {background:white;color:black;padding:6px 12px;border-radius:20px;}
+
+.container {display:flex;padding:40px 60px;justify-content:space-between;}
+.left {width:50%;}
+.left h1 {font-size:48px;}
+.form-box input {
+    width:80%;padding:12px;margin:10px 0;border-radius:8px;
+    border:none;background:#eaeaea;
+}
+.btn {background:black;color:white;padding:12px 20px;border-radius:8px;cursor:pointer;}
+
+.right img {width:100%;height:420px;border-radius:15px;}
+
+.features {display:flex;justify-content:space-around;background:white;padding:30px;}
+
+.feature{text-align:center;width:200px;}
+
+/* 🔥 HELP MODAL */
+.help-modal {
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.help-box {
+    background:white;
+    padding:20px;
+    width:300px;
+    border-radius:10px;
+}
+
+.help-box h3 {margin-top:0;}
+.help-box button {
+    width:100%;
+    margin:5px 0;
+    padding:10px;
+    border:none;
+    background:black;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.close-btn {
+    float:right;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+</style>
+
+<script>
+
+// HELP MODAL CONTROL
+function openHelp() {
+    document.getElementById("helpModal").style.display = "flex";
+}
+
+function closeHelp() {
+    document.getElementById("helpModal").style.display = "none";
+}
+
+function helpOption(text) {
+    alert(text);
+}
+
+// SIGN UP
+function signUp() {
+    let email = prompt("Enter your email:");
+    if (email && email.includes("@")) {
+        alert("Signup successful!");
+    } else alert("Invalid email");
+}
+
+// LOGIN
+function login() {
+    let email = prompt("Enter your email:");
+    if (email && email.includes("@")) {
+        alert("Login successful!");
+    } else alert("Invalid email");
+}
+
+// PRICE
+function showPrices() {
+    let p = document.getElementById("pickup").value;
+    let d = document.getElementById("drop").value;
+
+    if(p==""||d==""){ alert("Enter locations"); return;}
+
+    let price = Math.floor(Math.random()*200)+50;
+    alert("Price: ₹"+price);
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <div class="nav-left">
+        <b>RideApp</b>
+        <span>Ride</span>
+        <span>Drive</span>
+        <span>Business</span>
+    </div>
+
+    <div class="nav-right">
+        <span onclick="openHelp()">Help</span>
+        <span onclick="login()">Login</span>
+        <span class="signup" onclick="signUp()">Sign up</span>
+    </div>
+</div>
+
+<div class="container">
+<div class="left">
+<h1>Go anywhere with ease</h1>
+
+<div class="form-box">
+<input id="pickup" placeholder="Enter pickup"><br>
+<input id="drop" placeholder="Enter drop"><br>
+
+<div class="btn" onclick="showPrices()">See Prices</div>
+</div>
+</div>
+
+<div class="right">
+<img src="https://cdn.motor1.com/images/mgl/yMVyG/s1/ubermoto.jpg">
+</div>
+</div>
+
+<div class="features">
+<div class="feature"><h3>Daily rides</h3></div>
+<div class="feature"><h3>On-time</h3></div>
+<div class="feature"><h3>Safe</h3></div>
+<div class="feature"><h3>24/7</h3></div>
+</div>
+
+<!-- 🔥 HELP MODAL UI -->
+<div class="help-modal" id="helpModal">
+    <div class="help-box">
+        <span class="close-btn" onclick="closeHelp()">✖</span>
+        <h3>Help Center</h3>
+
+        <button onclick="helpOption('Enter locations and click See Prices')">Booking Ride</button>
+        <button onclick="helpOption('Check payment method or retry')">Payment Issue</button>
+        <button onclick="helpOption('Cancel from your ride section')">Cancel Ride</button>
+        <button onclick="helpOption('Email: support@rideapp.com')">Contact Support</button>
+    </div>
+</div>
+
+</body>
+</html>
